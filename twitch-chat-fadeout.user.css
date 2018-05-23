@@ -1,0 +1,42 @@
+/* ==UserStyle==
+@name           twitch-chat-fadeout
+@namespace      github.com/mechalynx/twitch-chat-fadeout
+@version        0.1.0
+@description    Fades messages in chat as they age
+@author         mechalynx
+@preprocessor stylus
+@var text fadeout-duration 'Seconds to fadeout' 60
+@var checkbox enter-from-right "Message slide-in" 1
+==/UserStyle== */
+@-moz-document regexp("https?:\\/\\/www\\.twitch\\.tv\\/popout\\/.*\\/chat\\?popout=") {
+    .chat-line__message,
+    .chat-line__status {
+        animation-name: enter-right, fade-away;
+        animation-duration: 1s, fadeout-duration s;
+        animation-fill-mode: none, forwards;
+    }
+    .chat-list__lines:hover .chat-line__message,
+    .chat-list__lines:hover .chat-line__status {
+        opacity: 1 !important;
+    }
+    @keyframes fade-away {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0.3;
+        }
+    }
+    if enter-from-right {
+        @keyframes enter-right {
+            from {
+                margin-left: 100%;
+                width: 300%;
+            }
+            to {
+                margin-left: 0%;
+                width: 100%;
+            }
+        }
+    }
+}
