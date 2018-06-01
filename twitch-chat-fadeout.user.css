@@ -1,11 +1,12 @@
 /* ==UserStyle==
 @name           twitch-chat-fadeout
 @namespace      github.com/mechalynx/twitch-chat-fadeout
-@version        0.2.0
+@version        0.3.0
 @description    Fades messages in chat as they age
 @author         mechalynx
 @preprocessor stylus
 @var text fadeout-duration 'Seconds to fadeout' 60
+@var text chat-font 'Chat font' inherit
 @var checkbox enter-from-right "Message slide-in" 1
 @var checkbox fadein-on-hover "Fadein on hover" 1
 @var select fadeout-opacity 'Fadeout amount' {
@@ -24,6 +25,9 @@ regexp("https?:\\/\\/www\\.twitch\\.tv\\/.*") {
         animation-name: enter-right, fade-away;
         animation-duration: 1s, fadeout-duration s;
         animation-fill-mode: none, forwards;
+    }
+    div.chat-list__lines div span{
+        font-family: chat-font !important;
     }
     if fadein-on-hover {
         .chat-list__lines:hover .chat-line__message,
